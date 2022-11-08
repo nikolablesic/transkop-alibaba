@@ -1,9 +1,10 @@
 transkop\tracking\controller\dto\mapper\ProductMapper.class
 transkop\tracking\repository\ProductRepository.class
-transkop\tracking\controller\dto\ProductResponse.class
 transkop\tracking\model\Product.class
 transkop\tracking\controller\ProductController.class
-transkop\tracking\service\impl\ProductServiceImpl.class
+transkop\tracking\config\SwaggerConfig.class
 transkop\tracking\service\ProductService.class
 transkop\tracking\TrackingApplication.class
+transkop\tracking\controller\dto\ProductResponse.class
+transkop\tracking\service\impl\ProductServiceImpl.class
 transkop\tracking\controller\dto\ProductRequest.class

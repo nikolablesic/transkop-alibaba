@@ -12,12 +12,4 @@ public class TrackingApplication {
 		SpringApplication.run(TrackingApplication.class, args);
 	}
 
-	/*@Bean
-	public Docket api() {
-		return new Docket(DocumentationType.SWAGGER_2)
-				.select()
-				.apis(RequestHandlerSelectors.any())
-				.build();
-	}*/
-
 }
