@@ -1,6 +1,7 @@
 package transkop.tracking.service.impl;
 
 import org.springframework.stereotype.Service;
+import transkop.tracking.exception.ProductNotFoundException;
 import transkop.tracking.model.Product;
 import transkop.tracking.repository.ProductRepository;
 import transkop.tracking.service.ProductService;
@@ -24,5 +25,10 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<Product> getAll() {
         return productRepository.findAll();
+    }
+
+    @Override
+    public Product getById(String id) {
+        return productRepository.findById(id).orElseThrow(() -> new ProductNotFoundException(id));
     }
 }
