@@ -35,6 +35,7 @@ public class ProductLocationController {
         Product product = productService.getById(request.getProductId());
         Location location = ProductLocationMapper.dtoToEntity(request, product);
         Location createdProduct = locationService.create(location);
-        return ResponseEntity.ok(ProductLocationMapper.entityToDto(createdProduct));
+        //return ResponseEntity.ok(ProductLocationMapper.entityToDto(createdProduct));
+        return ResponseEntity.ok().build();
     }
 }
