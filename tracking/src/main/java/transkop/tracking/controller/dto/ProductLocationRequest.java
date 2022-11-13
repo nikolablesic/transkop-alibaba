@@ -8,7 +8,7 @@ import javax.validation.constraints.NotBlank;
 @Getter
 @AllArgsConstructor
 public class ProductLocationRequest {
-    @NotBlank(message = "ProductId is mandatory")
+    @NotBlank(message = "Polje productId je obavezno")
     private String productId;
     private double longitude;
     private double latitude;

@@ -4,17 +4,16 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Getter
 @AllArgsConstructor
 public class ProductRequest {
-    @NotBlank(message = "Name is mandatory")
+    @NotBlank(message = "Polje name je obavezno")
     private String name;
-    @NotBlank(message = "Dimensions is mandatory")
+    @NotBlank(message = "Polje dimensions je obavezno")
     private String dimensions;
-    @NotNull(message = "Production date is mandatory")
+    @NotNull(message = "Polkje productionDate je obavezno")
     private Date productionDate;
 }
