@@ -14,9 +14,11 @@ transkop\tracking\controller\dto\ProductRequest.class
 transkop\tracking\controller\dto\mapper\ProductMapper.class
 transkop\tracking\repository\ProductRepository.class
 transkop\tracking\controller\dto\ProductLocationResponse.class
+transkop\tracking\controller\ProductLocationController$1.class
 transkop\tracking\service\impl\LocationServiceImpl.class
 transkop\tracking\service\ProductService.class
 transkop\tracking\TrackingApplication.class
 transkop\tracking\controller\dto\ProductResponse.class
+transkop\tracking\config\WebSocketConfig.class
 transkop\tracking\service\impl\ProductServiceImpl.class
 transkop\tracking\exception\ProductNotFoundException.class

@@ -1,10 +1,12 @@
 package transkop.tracking.controller;
 
+import com.google.gson.Gson;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.messaging.Message;
+import org.springframework.messaging.MessageHeaders;
+import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
+import org.springframework.web.bind.annotation.*;
 import transkop.tracking.controller.dto.ProductLocationRequest;
 import transkop.tracking.controller.dto.ProductLocationResponse;
 import transkop.tracking.controller.dto.ProductRequest;
@@ -17,6 +19,8 @@ import transkop.tracking.service.LocationService;
 import transkop.tracking.service.ProductService;
 
 import javax.validation.Valid;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/api/product-locations")
@@ -24,18 +28,49 @@ public class ProductLocationController {
 
     private LocationService locationService;
     private ProductService productService;
+    private SimpMessagingTemplate template;
 
-    public ProductLocationController(LocationService locationService, ProductService productService) {
+    public ProductLocationController(LocationService locationService, ProductService productService, SimpMessagingTemplate template) {
         this.locationService = locationService;
         this.productService = productService;
+        this.template = template;
     }
 
     @PostMapping
-    public ResponseEntity<ProductLocationResponse> create(@Valid @RequestBody ProductLocationRequest request) {
+    public ResponseEntity<Void> create(@Valid @RequestBody ProductLocationRequest request) {
         Product product = productService.getById(request.getProductId());
         Location location = ProductLocationMapper.dtoToEntity(request, product);
         Location createdProduct = locationService.create(location);
         //return ResponseEntity.ok(ProductLocationMapper.entityToDto(createdProduct));
+        Message message = new Message() {
+            @Override
+            public Object getPayload() {
+                Gson gson = new Gson();
+                String ret = gson.toJson(createdProduct);
+                return ret.getBytes();
+            }
+
+            @Override
+            public MessageHeaders getHeaders() {
+                return null;
+            }
+        };
+        template.send("/location/new", message);
+        return ResponseEntity.ok().build();
+    }
+
+    @GetMapping
+    public ResponseEntity<List<ProductLocationResponse>> getAll(){
+        List<Location> response = locationService.getAll();
+        return ResponseEntity.ok(response
+                .stream()
+                .map(r -> ProductLocationMapper.entityToDto(r))
+                .collect(Collectors.toList()));
+    }
+
+    @DeleteMapping
+    public ResponseEntity<Void> deleteAll(){
+        locationService.deleteAll();
         return ResponseEntity.ok().build();
     }
 }

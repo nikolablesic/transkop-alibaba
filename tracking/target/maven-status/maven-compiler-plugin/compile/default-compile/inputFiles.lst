@@ -6,6 +6,7 @@ D:\Cam\Transkop\transkop-alibaba\tracking\src\main\java\transkop\tracking\except
 D:\Cam\Transkop\transkop-alibaba\tracking\src\main\java\transkop\tracking\config\SwaggerConfig.java
 D:\Cam\Transkop\transkop-alibaba\tracking\src\main\java\transkop\tracking\repository\LocationRepository.java
 D:\Cam\Transkop\transkop-alibaba\tracking\src\main\java\transkop\tracking\service\ProductService.java
+D:\Cam\Transkop\transkop-alibaba\tracking\src\main\java\transkop\tracking\config\WebSocketConfig.java
 D:\Cam\Transkop\transkop-alibaba\tracking\src\main\java\transkop\tracking\service\impl\LocationServiceImpl.java
 D:\Cam\Transkop\transkop-alibaba\tracking\src\main\java\transkop\tracking\controller\dto\ProductRequest.java
 D:\Cam\Transkop\transkop-alibaba\tracking\src\main\java\transkop\tracking\exception\ProductNotFoundException.java

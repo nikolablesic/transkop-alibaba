@@ -5,6 +5,8 @@ import transkop.tracking.model.Location;
 import transkop.tracking.repository.LocationRepository;
 import transkop.tracking.service.LocationService;
 
+import java.util.List;
+
 @Service
 public class LocationServiceImpl implements LocationService {
 
@@ -17,5 +19,15 @@ public class LocationServiceImpl implements LocationService {
     @Override
     public Location create(Location location) {
         return locationRepository.save(location);
+    }
+
+    @Override
+    public List<Location> getAll() {
+        return locationRepository.findAll();
+    }
+
+    @Override
+    public void deleteAll() {
+        locationRepository.deleteAll();
     }
 }
