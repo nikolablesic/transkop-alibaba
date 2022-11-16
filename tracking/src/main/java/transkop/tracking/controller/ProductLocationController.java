@@ -73,4 +73,10 @@ public class ProductLocationController {
         locationService.deleteAll();
         return ResponseEntity.ok().build();
     }
+
+    @DeleteMapping("{id}")
+    public  ResponseEntity<Void> deleteById(@PathVariable long id){
+        locationService.deleteById(id);
+        return ResponseEntity.ok().build();
+    }
 }

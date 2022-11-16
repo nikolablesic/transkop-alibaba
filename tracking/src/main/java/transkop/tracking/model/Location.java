@@ -14,7 +14,6 @@ public class Location {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
     @ManyToOne
     private Product product;
     private double longitude;

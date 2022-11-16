@@ -30,4 +30,9 @@ public class LocationServiceImpl implements LocationService {
     public void deleteAll() {
         locationRepository.deleteAll();
     }
+
+    @Override
+    public void deleteById(long id) {
+        locationRepository.deleteById(id);
+    }
 }

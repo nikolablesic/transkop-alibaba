@@ -6,6 +6,14 @@ new Vue({
         };
     },
     methods: {
+        convertTZ(date) {
+            var fd = typeof date === "string" ? new Date(date) : date
+            var hours = fd.getHours();
+            var minutes = fd.getMinutes();
+            hours = hours < 10 ? '0'+hours : hours;
+            minutes = minutes < 10 ? '0'+minutes : minutes;
+            return fd.getDate() + "." + (fd.getMonth()+1) + "." + fd.getFullYear() + ". " + hours + ':' + minutes;
+        },
 		findAll(){
 			axios.get("/api/product-locations")
 				.then((response) => {

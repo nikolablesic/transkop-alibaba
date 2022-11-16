@@ -9,4 +9,5 @@ public interface LocationService {
     Location create(Location location);
     List<Location> getAll();
     void deleteAll();
+    void deleteById(long id);
 }
