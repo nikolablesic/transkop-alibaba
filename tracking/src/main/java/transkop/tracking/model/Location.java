@@ -19,10 +19,12 @@ public class Location {
     private Product product;
     private double longitude;
     private double latitude;
+    private Date creationDate;
 
     public Location(Product product, double longitude, double latitude){
         this.product = product;
         this.longitude = longitude;
         this.latitude = latitude;
+        this.creationDate = new Date();
     }
 }

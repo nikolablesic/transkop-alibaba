@@ -8,7 +8,7 @@ import transkop.tracking.model.Product;
 
 public class ProductLocationMapper {
     public static ProductLocationResponse entityToDto(Location location) {
-        return new ProductLocationResponse(location.getId(), ProductMapper.entityToDto(location.getProduct()), location.getLongitude(), location.getLatitude());
+        return new ProductLocationResponse(location.getId(), ProductMapper.entityToDto(location.getProduct()), location.getLongitude(), location.getLatitude(), location.getCreationDate());
     }
     public static Location dtoToEntity(ProductLocationRequest request, Product product) {
         if (request == null || product == null) {
