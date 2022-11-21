@@ -5,7 +5,7 @@ public class ProductNotFoundException extends RuntimeException {
     private String id;
 
     public ProductNotFoundException(String id) {
-        super(String.format("Proizvod sa identifikatorom %s nije pronadjen!", id));
+        super("Ne postoji u bazi.");
         this.id = id;
     }
 
