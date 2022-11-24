@@ -5,6 +5,7 @@ transkop\tracking\controller\ProductController.class
 transkop\tracking\model\Location.class
 transkop\tracking\service\LocationService.class
 transkop\tracking\config\SwaggerConfig.class
+transkop\tracking\controller\ProductLocationController$2.class
 transkop\tracking\utils\generators\HexadecimalSequenceIdGenerator.class
 transkop\tracking\controller\ProductLocationController.class
 transkop\tracking\controller\dto\mapper\ProductLocationMapper.class

@@ -8,16 +8,23 @@
 <div id="app" style="position: relative; width: 60%; left: 20%;">
     <div class="box" v-for="item in items">
         <table>
-            <tr>
+            <tr v-if="item.product">
                 <td colspan="2" style="color:#62C1D3"><b>{{item.product.name}}</b></td>
             </tr>
-            <tr>
+            <tr v-if="item.product">
                 <td>Geografska visina</td>
                 <td>{{item.longitude}}</td>
             </tr>
-            <tr>
+            <tr v-if="item.product">
                 <td>Geografska sirina</td>
                 <td>{{item.latitude}}</td>
+            </tr>
+            <tr v-if="!item.product">
+                <td colspan="2" style="color:#FF933A"><b>Greska</b></td>
+            </tr>
+            <tr v-if="!item.product">
+                <td>Opis greske</td>
+                <td>Skenirani proizvod sa identifikatorom <b>{{item.id}}</b> ne postoji u bazi!</td>
             </tr>
             <tr>
                 <td>Vreme unosa</td>

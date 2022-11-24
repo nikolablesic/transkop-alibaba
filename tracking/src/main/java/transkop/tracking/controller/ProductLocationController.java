@@ -13,12 +13,15 @@ import transkop.tracking.controller.dto.ProductRequest;
 import transkop.tracking.controller.dto.ProductResponse;
 import transkop.tracking.controller.dto.mapper.ProductLocationMapper;
 import transkop.tracking.controller.dto.mapper.ProductMapper;
+import transkop.tracking.exception.ProductNotFoundException;
 import transkop.tracking.model.Location;
 import transkop.tracking.model.Product;
 import transkop.tracking.service.LocationService;
 import transkop.tracking.service.ProductService;
 
 import javax.validation.Valid;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -38,7 +41,29 @@ public class ProductLocationController {
 
     @PostMapping
     public ResponseEntity<Void> create(@Valid @RequestBody ProductLocationRequest request) {
-        Product product = productService.getById(request.getProductId());
+        Product product = null;
+        try{
+            product = productService.getById(request.getProductId());
+        } catch(ProductNotFoundException e){
+            Message message = new Message() {
+                @Override
+                public Object getPayload() {
+                    HashMap<String, Object> error = new HashMap<String, Object>();
+                    error.put("id", request.getProductId());
+                    error.put("creationDate", new Date());
+                    Gson gson = new Gson();
+                    String ret = gson.toJson(error);
+                    return ret.getBytes();
+                }
+
+                @Override
+                public MessageHeaders getHeaders() {
+                    return null;
+                }
+            };
+            template.send("/location/new", message);
+            throw new ProductNotFoundException(request.getProductId());
+        }
         Location location = ProductLocationMapper.dtoToEntity(request, product);
         Location createdProduct = locationService.create(location);
         //return ResponseEntity.ok(ProductLocationMapper.entityToDto(createdProduct));
