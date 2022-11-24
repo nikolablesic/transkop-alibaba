@@ -17,4 +17,11 @@ public class ProductMapper {
         return new Product(request.getName(), request.getDimensions(), request.getProductionDate());
     }
 
+    public static Product dtoToEntity(String id, ProductRequest request) {
+        if (request == null) {
+            return null;
+        }
+        return new Product(id, request.getName(), request.getDimensions(), request.getProductionDate());
+    }
+
 }

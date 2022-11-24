@@ -34,4 +34,21 @@ public class ProductController {
         List<Product> books = productService.getAll();
         return ResponseEntity.ok(books.stream().map(product -> ProductMapper.entityToDto(product)).collect(Collectors.toList()));
     }
+
+    @GetMapping("{id}")
+    public ResponseEntity<ProductResponse> getById(@PathVariable String id) {
+        Product product = productService.getById(id);
+        if (product == null)
+            return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(ProductMapper.entityToDto(product));
+    }
+
+
+    @PutMapping("{id}")
+    public ResponseEntity<ProductResponse> update(@PathVariable String id, @Valid @RequestBody ProductRequest request) {
+        Product product = ProductMapper.dtoToEntity(id, request);
+        Product updatedProduct = productService.update(product);
+        return ResponseEntity.ok(ProductMapper.entityToDto(updatedProduct));
+    }
+
 }

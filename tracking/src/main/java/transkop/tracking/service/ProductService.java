@@ -8,4 +8,5 @@ public interface ProductService {
     Product create(Product product);
     List<Product> getAll();
     Product getById(String id);
+    Product update(Product product);
 }
