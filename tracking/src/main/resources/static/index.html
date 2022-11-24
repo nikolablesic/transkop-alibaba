@@ -12,6 +12,7 @@
     </br>
     <input type="button" class="button" @click="modal = true; cleanForm();" value="Dodaj novi proizvod">
     </br>
+    </br>
     <div class="modal-wrapper" v-if="modal">
     <div class="modal">
         <form @submit.prevent="submit">
@@ -36,6 +37,11 @@
     </form>
     </div>
     </div>
+    <div class="modal-wrapper" v-if="encodedImage" @click="encodedImage = null">
+        <div class="modal">
+            <img class = "rotate" alt="Vue logo" :src="getQRCodeImgUrl" />
+        </div>
+    </div>
     </br>
     <div class="box" v-for="item in items" style="margin-bottom: 30px;">
         <table>
@@ -51,7 +57,10 @@
                 <td>{{formatDate(item.productionDate)}}</td>
             </tr>
             <tr>
-                <td><input class="button" type="button" value="Izmeni" @click="edit(item)"></td>
+                <td>
+                    <input class="button" type="button" value="Izmeni" @click="edit(item)">&nbsp;
+                    <input class="button" type="button" value="QR" @click="getQRCode(item.id)">
+                </td>
             </tr>
         </table>
     </div>

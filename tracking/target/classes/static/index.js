@@ -8,16 +8,28 @@ new Vue({
             productionDate: null,
             modal: false,
             id: null,
+            encodedImage: null
         };
+    },
+    computed: {
+      getQRCodeImgUrl() {
+         return ('data:image/png;base64,' + this.encodedImage);
+      }
     },
     methods: {
 		findAll(){
 			axios.get("/api/products")
-				.then((response) => {
-					this.items = response.data
-					this.items.reverse()
-				});
+			.then((response) => {
+			    this.items = response.data
+				this.items.reverse()
+			});
 		},
+		getQRCode(text){
+            axios.get("/api/qr-code/" + text)
+            .then((response) => {
+                this.encodedImage = response.data;
+            });
+        },
 		post() {
         	axios
         	.post("/api/products", {

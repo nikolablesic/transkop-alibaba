@@ -1,3 +1,4 @@
+transkop\tracking\controller\QRCodeController.class
 transkop\tracking\utils\convertors\DecimalConverter.class
 transkop\tracking\exception\handler\RestResponseEntityExceptionHandler.class
 transkop\tracking\model\Product.class
@@ -19,6 +20,7 @@ transkop\tracking\controller\ProductLocationController$1.class
 transkop\tracking\service\impl\LocationServiceImpl.class
 transkop\tracking\service\ProductService.class
 transkop\tracking\TrackingApplication.class
+transkop\tracking\utils\generators\QRCodeGenerator.class
 transkop\tracking\controller\dto\ProductResponse.class
 transkop\tracking\config\WebSocketConfig.class
 transkop\tracking\service\impl\ProductServiceImpl.class
