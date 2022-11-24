@@ -1,14 +1,20 @@
 <html>
 <head>
     <title>Transkop</title>
+    <link rel="stylesheet" href="index.css">
 </head>
 <body>
 <br/><br/><br/><br/>
 <div id="app" style="position: relative; width: 60%; left: 20%;">
-    <p>Click <a href="/swagger-ui/">here</a> to view the documentation.</p>
-    <p>Click <a href="/location.html">here</a> to view product locations.</p>
+    <input type="button" class="button" @click="location.href = '/swagger-ui/';" value="Swagger dokumentacija">
+    <input type="button" class="button" @click="location.href = '/location.html';" value="Prikaz lokacija">
     </br>
-    <form @submit.prevent="post">
+    </br>
+    <input type="button" class="button" @click="modal = true; cleanForm();" value="Dodaj novi proizvod">
+    </br>
+    <div class="modal-wrapper" v-if="modal">
+    <div class="modal">
+        <form @submit.prevent="submit">
         <table>
             <tr>
                 <td class="right">Naziv proizvoda</td>
@@ -23,17 +29,31 @@
                 <td><input type="date" v-model="productionDate" required></td>
             </tr>
             <tr>
-                <td></td>
-                <td><input style="position: relative; width: 80%; left: 10%;"
-                           type="submit"></td>
+                <td><input class="button" type="button" value="Otkazi" @click="modal = false"></td>
+                <td><input class="button" type="submit" value="Potvrdi"></td>
             </tr>
         </table>
     </form>
+    </div>
+    </div>
     </br>
-    <div v-for="item in items" style="margin-bottom: 30px;">
-        <b>{{item.name}}</b><br/>
-        <i>{{item.dimensions}}</i><br/>
-        {{item.productionDate}}<br/>
+    <div class="box" v-for="item in items" style="margin-bottom: 30px;">
+        <table>
+            <tr>
+                <td colspan="2" style="color:#62C1D3"><b>{{item.name}}</b></td>
+            </tr>
+            <tr>
+                <td>Dimenzije</td>
+                <td>{{item.dimensions}}</td>
+            </tr>
+            <tr>
+                <td>Datum proizvodnje</td>
+                <td>{{formatDate(item.productionDate)}}</td>
+            </tr>
+            <tr>
+                <td><input class="button" type="button" value="Izmeni" @click="edit(item)"></td>
+            </tr>
+        </table>
     </div>
 </div>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
